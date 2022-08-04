@@ -1,7 +1,7 @@
 <template>
     <h1>Home</h1>
 <div class="container">
-    <h2>Content</h2>
+    <h2>Content on dev</h2>
     <div class="todos">
         <div class="todo-item">
             <div class="todo-title">Title</div>
