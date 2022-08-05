@@ -72,7 +72,6 @@ export default defineComponent({
             let indx = todosListReactive.findIndex(item => item.id === id)
             todosListReactive.splice(indx, 1)
         }
-        onMounted(() => console.log('todosListReactive',todosListReactive.findIndex(item => item.id === id)))
         return {
             title,
             description,
