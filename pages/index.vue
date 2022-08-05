@@ -13,7 +13,7 @@
         <div class="todo-list-wrapper flex">
             <div class="todos">
                <template v-for="todo in todosListReactive" :key=" todo.id">
-                 <todo-item :data="todo"></todo-item>
+                 <todo-item :data="todo" @delete="deleteTodo"></todo-item>
                </template>
     </div>
         </div>
@@ -68,13 +68,18 @@ export default defineComponent({
                 return
             }
         }
-        
+        const deleteTodo = (id) => {
+            let indx = todosListReactive.findIndex(item => item.id === id)
+            todosListReactive.splice(indx, 1)
+        }
+        onMounted(() => console.log('todosListReactive',todosListReactive.findIndex(item => item.id === id)))
         return {
             title,
             description,
             todosListReactive,
             todosList,
-            addTodo
+            addTodo,
+            deleteTodo
         }
     },
 })
