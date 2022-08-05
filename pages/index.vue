@@ -1,8 +1,8 @@
 <template>
-    <h1>Home</h1>
-<div class="container">
+<div>
     <h2>Content on dev</h2>
-    <div class="content-buttons">
+    <div class="container">
+            <div class="content-buttons">
         <button class="content-button">List</button>
         <button class="content-button">Cards</button>
         <button class="add-button" @click="addTodo">Add</button>
@@ -12,15 +12,14 @@
     <div class="todo-list">
         <div class="todo-list-wrapper flex">
             <div class="todos">
-               <template v-for="todo in todosListReactive" :key=" todo.id">
+               <template v-for="todo in todosListReactive" :key="todo.id">
                  <todo-item :data="todo" @delete="deleteTodo"></todo-item>
                </template>
-    </div>
+            </div>
         </div>
     </div>
-
+    </div>
 </div>
-
 </template>
 <script>
 import { defineComponent,reactive,ref } from '@vue/composition-api'
@@ -88,12 +87,12 @@ body{
  background-color: #000;
  color: #fff;   
 }
-.container{
+.container {
         width: 1080px;
         margin-left: auto;
         margin-right: auto;
-    }
-button{
+}
+button {
     border: none;
     background-color: rgb(123, 0, 255) ;
     cursor: pointer;
