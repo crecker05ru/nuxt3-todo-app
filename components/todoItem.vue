@@ -3,6 +3,7 @@
                         <div class="todo-title"><span class="todo-article">ID:</span> {{data.id}}</div>
             <div class="todo-title"><span class="todo-article">Title:</span> {{data.title}}</div>
             <div class="todo-content"><span class="todo-article">Description:</span>  {{data.description}}</div>
+                        <div class="todo-content"><span class="todo-article">Created:</span>  {{data.createdAt}}</div>
             <span class="todo-article">Done</span><input type="checkbox" class="todo-checkbox" v-model="checked" />
             <button class="btn-delete" @click="deleteTodo">Delete</button>
                 

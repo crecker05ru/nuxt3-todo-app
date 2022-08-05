@@ -46,7 +46,8 @@ const actions = {
         this.items = this.items.filter( (todo: Todo) => todo.id !== id)
     },
     update(id: string, update: TodoUpdate){
-        const index = this.items.findIndex( item => item.id === id)
+        const items  = this.items as TodoState
+        const index = this.items.findIndex( item => (item as Todo).id === id)
         this.items[index] = {...this.items[index],
             ...update,
             upadatedAt: new Date()

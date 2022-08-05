@@ -23,6 +23,7 @@
 </template>
 <script>
 import { defineComponent,reactive,ref } from '@vue/composition-api'
+import { useTodoStore } from '~~/store/todos'
 const todosList = [
     {
         id: 1,
@@ -43,11 +44,20 @@ const todosList = [
 ]
 export default defineComponent({
     name: 'home',
-    setup() {
+    async setup() {
+
+        const todoStore = useTodoStore()
         let count = 3
         const title = ref('')
         const description = ref('')
         const todosListReactive = reactive([...todosList])
+        const error = ref(false)
+        const loading = ref(false)
+
+        await useAsyncData("todos", async () => {
+            return todoStore.items
+            })
+
         const addTodo = () => {
         const item = {
         id: count++,
@@ -59,8 +69,10 @@ export default defineComponent({
         } 
             if(todosListReactive.filter(item => item.id !== item.id)){
                 todosListReactive.push(item)
+                todoStore.add(item)
                 title.value = ''
                 description.value= ''
+                console.log('todoStore.items',todoStore.items)
                 console.log('todoItem',item)
                 console.log('todosListReactive',todosListReactive)
             } else {
@@ -88,7 +100,7 @@ body{
  color: #fff;   
 }
 .container {
-        width: 1080px;
+        width: 1280px;
         margin-left: auto;
         margin-right: auto;
 }
