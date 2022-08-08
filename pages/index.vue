@@ -35,7 +35,7 @@
 </template>
 <script>
 import { defineComponent, reactive, ref } from "@vue/composition-api";
-import { useTodoStore } from "~~/store/todos";
+import { useTodoStore } from "~~/store/todo";
 import { useRouter } from "vue-router";
 
 const todosList = [

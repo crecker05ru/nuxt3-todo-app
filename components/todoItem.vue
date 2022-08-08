@@ -12,9 +12,9 @@
     <div class="todo-content">
       <span class="todo-article">Created:</span> {{ data.createdAt }}
     </div>
-    <span class="todo-article">Done</span
-    ><input type="checkbox" class="todo-checkbox" v-model="checked" />
-    <button class="btn-delete" @click="deleteTodo">Delete</button>
+    <span class="todo-article">Done</span>
+    <input type="checkbox" class="todo-checkbox" v-model="checked" />
+    <button class="btn-delete" @click="handleDeleteBtnClick">Delete</button>
   </div>
 </template>
 <script>
@@ -32,13 +32,13 @@ export default defineComponent({
   setup(props, ctx) {
     const checked = ref(props.data.done);
 
-    const deleteTodo = () => {
+    const handleDeleteBtnClick = () => {
       ctx.emit("delete", props.data.id);
     };
 
     return {
       checked,
-      deleteTodo,
+      handleDeleteBtnClick,
     };
   },
 });
