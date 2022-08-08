@@ -8,6 +8,7 @@
         <button class="add-button" @click="addTodo">Add</button>
         <input type="text" class="todo-input" v-model="title" placeholder="Title"/>
         <input type="text" class="todo-input" v-model="description" placeholder="Decription"/>
+        <button @click="toAuth">to authorization</button>
     </div>
     <div class="todo-list">
         <div class="todo-list-wrapper flex">
@@ -24,6 +25,8 @@
 <script>
 import { defineComponent,reactive,ref } from '@vue/composition-api'
 import { useTodoStore } from '~~/store/todos'
+import { useRouter } from 'vue-router'
+
 const todosList = [
     {
         id: 1,
@@ -45,7 +48,7 @@ const todosList = [
 export default defineComponent({
     name: 'home',
     async setup() {
-
+        const router = useRouter()
         const todoStore = useTodoStore()
         let count = 3
         const title = ref('')
@@ -54,6 +57,9 @@ export default defineComponent({
         const error = ref(false)
         const loading = ref(false)
 
+        const toAuth = () => {
+            router.push('/auth')
+        }
         await useAsyncData("todos", async () => {
             return todoStore.items
             })
@@ -89,7 +95,8 @@ export default defineComponent({
             todosListReactive,
             todosList,
             addTodo,
-            deleteTodo
+            deleteTodo,
+            toAuth
         }
     },
 })

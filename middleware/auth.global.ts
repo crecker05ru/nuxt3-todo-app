@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
     const cookie = useCookie('nuxt3-todo-token-v2')
 
-    if(!cookie || !cookie.value){
-        return navigateTo('/auth')
-    }
+    // if(!cookie || !cookie.value){
+    //     return navigateTo('/auth')
+    // }
 })

@@ -4,20 +4,30 @@
             <h1>Auth</h1>
             <input type="text" placeholder="email" class="auth" v-model="email">
             <input type="password" placeholder="password" class="auth" v-model="password">
+            <button @click="autorize">login</button>
+            <button @click="backHandler">back</button>
         </div>
     </div>
 </template>
 <script>
 import { defineComponent,ref } from '@vue/composition-api'
+import { useRouter, useRoute } from 'vue-router'
 
 export default defineComponent({
-    name: 'auth',
-    setup() {
-        const email = ref('')
-        const password = ref('')
-        const loading = ref('')
-        const error = ref(null)
+  name: 'auth',
+  setup() { 
+    const router = useRouter()
+    const email = ref('')
+    const password = ref('')
+    const loading = ref('')
+    const error = ref(null)
 
+const login = () =>  {}
+const register = () =>  {}
+
+const backHandler = () => {
+  router.push('/')
+}
 const authorize = async () => {
   loading.value = true
   let err
@@ -53,7 +63,8 @@ const authorize = async () => {
         return {
             email,
             password,
-            authorize
+            authorize,
+            backHandler
         }
     },
 })
