@@ -169,23 +169,7 @@ input[type="checkbox"] {
     background-color: rgb(123, 0, 255);
   }
 }
-.todo {
-  &-list {
-    background-color: rgb(35, 35, 35);
-    border-radius: 8px;
-    padding: 10px;
-  }
-  &-item {
-    background-color: rgb(132, 0, 255);
-    border-radius: 8px;
-    display: flex;
-    column-gap: 10px;
-    height: 50px;
-    align-items: center;
-    padding: 5px;
-    margin-top: 10px;
-  }
-}
+
 .flex {
   display: flex;
 }

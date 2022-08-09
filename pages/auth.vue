@@ -9,28 +9,30 @@
         class="auth"
         v-model="password"
       />
-      <button @click="autorize">login</button>
-      <button @click="backHandler">back</button>
+      <button type="button" @click="authorize">login</button>
+      <button type="button" @click="redirectToBack">back</button>
     </div>
   </div>
 </template>
-<script>
-import { defineComponent, ref } from "@vue/composition-api";
+
+<script lang="ts">
+import { defineComponent, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
 export default defineComponent({
   name: "auth",
   setup() {
     const router = useRouter();
-    const email = ref("");
-    const password = ref("");
-    const loading = ref("");
+    const email = ref(null);
+    const password = ref(null);
+    const loading = ref(null);
     const error = ref(null);
+    const loginMode = ref(false);
 
     const login = () => {};
     const register = () => {};
 
-    const backHandler = () => {
+    const redirectToBack = () => {
       router.push("/");
     };
     const authorize = async () => {
@@ -69,7 +71,7 @@ export default defineComponent({
       email,
       password,
       authorize,
-      backHandler,
+      redirectToBack,
     };
   },
 });
