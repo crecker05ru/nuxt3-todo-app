@@ -33,10 +33,13 @@
     </div>
   </div>
 </template>
-<script>
-import { defineComponent, reactive, ref } from "@vue/composition-api";
+
+<script lang="ts">
+import { defineComponent, reactive, ref } from "vue";
 import { useTodoStore } from "~~/store/todo";
 import { useRouter } from "vue-router";
+import type { MainPageInstance } from "./types";
+import type { Todo } from '../store/todo/types'
 
 const todosList = [
   {
@@ -56,21 +59,24 @@ const todosList = [
     updatedAt: new Date(),
   },
 ];
+
 export default defineComponent({
-  name: "home",
-  async setup() {
+  name: "HomePage",
+
+  async setup(): Promise<MainPageInstance> {
     const router = useRouter();
     const todoStore = useTodoStore();
     let count = 3;
     const title = ref("");
     const description = ref("");
-    const todosListReactive = reactive([...todosList]);
+    const todosListReactive = reactive<Todo[]>([...todosList]);
     const error = ref(false);
     const loading = ref(false);
 
     const toAuth = () => {
       router.push("/auth");
     };
+
     await useAsyncData("todos", async () => {
       return todoStore.items;
     });
@@ -84,6 +90,7 @@ export default defineComponent({
         createdAt: new Date(),
         updatedAt: new Date(),
       };
+
       if (todosListReactive.filter((item) => item.id !== item.id)) {
         todosListReactive.push(item);
         todoStore.add(item);
@@ -96,10 +103,12 @@ export default defineComponent({
         return;
       }
     };
+
     const deleteTodo = (id) => {
       let indx = todosListReactive.findIndex((item) => item.id === id);
       todosListReactive.splice(indx, 1);
     };
+
     return {
       title,
       description,

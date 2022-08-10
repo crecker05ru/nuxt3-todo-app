@@ -22,6 +22,13 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import type { PropType } from "vue";
+
+import type {
+  TodoItemPropData,
+  TodoItemProps,
+  TodoItemInstance,
+} from "./types";
 
 export default defineComponent({
   name: "todoItem",
@@ -30,13 +37,13 @@ export default defineComponent({
 
   props: {
     data: {
-      type: Object,
+      type: Object as PropType<TodoItemPropData>,
       default: null,
     },
   },
 
-  setup(props, ctx) {
-    const isChecked = ref(props.data || props.data.done);
+  setup(props: TodoItemProps, ctx): TodoItemInstance {
+    const isChecked = ref(Boolean(props.data?.done));
 
     const handleDeleteBtnClick = () => {
       ctx.emit("delete", props.data.id);

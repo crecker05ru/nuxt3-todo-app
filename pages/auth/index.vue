@@ -18,10 +18,12 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import type { AuthPageInstance } from "./types";
 
 export default defineComponent({
   name: "auth",
-  setup() {
+
+  setup(): AuthPageInstance {
     const router = useRouter();
     const email = ref(null);
     const password = ref(null);
@@ -38,33 +40,6 @@ export default defineComponent({
     const authorize = async () => {
       loading.value = true;
       let err;
-      if (loginMode.value) {
-        const response = await $fetch("/api/user/login", {
-          method: "POST",
-          body: {
-            email: email.value,
-            password: password.value,
-          },
-        });
-        err = response.error;
-      } else {
-        const response = await $fetch("/api/user/create", {
-          method: "POST",
-          body: {
-            email: email.value,
-            password: password.value,
-            passwordConfirm: passwordConfirm.value,
-          },
-        });
-        err = response.error;
-      }
-      loading.value = false;
-      if (err) {
-        error.value = err;
-        setTimeout(() => (error.value = null), 3000);
-      } else {
-        location.href = "/";
-      }
     };
 
     return {
